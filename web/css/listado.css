@@ -1,0 +1,174 @@
+.container{
+    /*display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;*/
+}
+
+
+.carta{
+    width: 100%;
+    /*width: 600px;*/
+    height: 200px;
+    position: relative;
+    display: grid;
+    grid-template-columns: 200px auto;
+    grid-template-rows: 200px;
+    justify-items: center;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 5px solid #f8c24a;
+    margin-bottom: 5px;
+    transition: transform 500ms;
+}
+
+.carta:hover{
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+.contenido-imagen-carta{
+    grid-column: 1;
+    grid-row: 1;
+    overflow: hidden;
+    
+}
+
+.imagen-carta{
+    width: auto;
+    height: 200px;
+}
+
+.contenido-carta{
+    align-self: center;
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    display: grid;
+    justify-content: space-evenly;
+    align-items: center;
+    
+
+    grid-template-areas:    "nombre nombre sexo"
+                            "descripcion descripcion descripcion "
+                            "edad peso tamanio"
+                            "desparasitado vacunado esterilizado "
+                            "preguntar preguntar preguntar";
+
+    grid-template-columns: auto auto auto ;
+    grid-template-rows: auto auto auto auto ;
+    background-color: white;
+}
+
+.contenido-carta .nombre{
+    grid-area: nombre;
+}
+.contenido-carta .descripcion{
+    grid-area: descripcion;
+}
+.contenido-carta .edad{
+    grid-area: edad;
+}
+.contenido-carta .sexo{
+    grid-area: sexo;
+}
+.contenido-carta .peso{
+    grid-area: peso;
+}
+.contenido-carta .tamanio{
+    grid-area: tamanio;
+}
+.contenido-carta .desparasitado{
+    grid-area: desparasitado;
+}
+.contenido-carta .vacunado{
+    grid-area: vacunado;
+}
+.contenido-carta .esterilizado{
+    grid-area: esterilizado;
+}
+.contenido-carta .animal{
+    grid-area: animal;
+}
+
+.contenido-carta .btn-preguntar{
+    grid-area: preguntar;
+    border: 2px solid #3177F7;
+    color: #3177F7;
+    background-color: #f8c24a;
+    border-radius: 5px; 
+    transition: color 300ms, background-color 300ms, border 300ms;
+}
+
+.contenido-carta .btn-preguntar:hover{
+    background-color: #3177F7;
+    border: 2px solid #f8c24a;
+    color: #f8c24a;
+}
+
+.contenido-carta svg{
+    width: 25px;
+    height: 25px;
+}
+
+.contenido-carta p, .contenido-carta h4{
+    margin: 0;
+}
+.contenido-carta h4{
+    font-size: 24px;
+    font-weight: 600;
+}
+.contenido-carta p{
+    font-weight: 500;
+    font-size: 14px;
+}
+.contenido-carta p span{
+    color: gray;
+}
+
+.imagen-animal{
+    position: absolute;
+    top: 1px;
+    left: 150px;
+    /*transform: rotate(10deg);
+    z-index: 10;*/
+
+}
+.imagen-animal img{
+    width: 40px;
+    height: auto;
+    background-color: #f8c24a;
+    border-radius: 30px;
+    padding: 5px;
+}
+
+.svg-hembra{
+    fill: #F73E9B;
+}
+.svg-macho{
+    fill: #3177F7;
+}
+.svg-yes{
+    fill: #50FA93;
+}
+.svg-no{
+    fill: #FA4C41;
+}
+
+@media screen and (max-width:768px) {
+
+    .contenido-carta{
+        padding: 10px 5px;
+    }
+
+    .contenido-carta h4{
+        font-size: 18px;
+
+    }
+    .contenido-carta p{
+
+        font-size: 12px;
+    }
+}

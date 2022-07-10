@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mascotas</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <header id="idheader"></header>
+    <div id="msj-alerta"></div>
+    <main>
+      <div class="container" id="app">
+        <h2 class="titulo-seccion">Mascotas</h2>
+        <section class="errored" v-if="errored">
+          <p>
+            Lo sentimos, no es posible obtener la información en este momento,
+            por favor intente nuevamente mas tarde
+          </p>
+          <img class="no-cargo-img" src="./img/error.gif" alt="no cargo" />
+        </section>
+        <section class="seccion-tabla" v-else>
+          <div class="loading-tb" v-if="loading">
+            <div class="spinner-border" role="status">
+              <span class="sr-only"></span>
+            </div>
+            <p class="cargando">Cargando....</p>
+          </div>
+          <div v-else>
+            <a href="create_mascota.html" class="btn btn-success">Nuevo</a>
+            <br /><br />
+            <div v-if="vacio">
+              <p>
+                Aun no hay ninguna mascota, agregue una para poder visualizarla.
+              </p>
+            </div>
+            <div class="table-container" v-else>
+              <table
+                class="table table-striped table-responsive table-bordered align-middle"
+              >
+                <tr class="table-dark">
+                  <th>Id</th>
+                  <th class="sticky">Nombre</th>
+                  <th>Descripcion</th>
+                  <th>Sexo</th>
+                  <th>Años</th>
+                  <th>Animal</th>
+                  <th>Peso</th>
+                  <th>Tamaño</th>
+                  <th>Intervenciones</th>
+                  <th>Foto</th>
+                  <th>Acciones</th>
+                </tr>
+                <tr v-for="mascota in mascotas">
+                  <td>{{mascota.id}}</td>
+                  <td class="sticky" id="sticky-column">{{mascota.nombre}}</td>
+                  <td>{{mascota.descripcion}}</td>
+                  <td>{{mascota.sexo}}</td>
+                  <td>{{mascota.edad}}</td>
+                  <td
+                    v-for="animal in animales"
+                    v-if="mascota.animal==animal.id"
+                  >
+                    {{animal.descripcion}}
+                  </td>
+                  <td>{{mascota.peso}} Kg</td>
+                  <td>{{mascota.tamanio}}</td>
+                  <td>
+                    <p v-if="mascota.vacunado">Vacunado</p>
+                    <p v-if="mascota.desparasitado">Desparasitado</p>
+                    <p v-if="mascota.esterilizado">Esterilizado</p>
+                  </td>
+                  <td>
+                    <div class="td-img">
+                      <img
+                        :src="mascota.foto"
+                        :alt="'imagen:'+mascota.nombre"
+                        height="50"
+                      />
+                    </div>
+                  </td>
+                  <td class="">
+                    <div class="acciones">
+                      <a
+                        :href="'update_mascota.html?id='+mascota.id"
+                        class="btn btn-primary"
+                        >Modificar</a
+                      >
+                      <button
+                        class="btn btn-danger"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modalEliminar"
+                        v-on:click="aEliminar = mascota"
+                      >
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </section>
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="modalEliminar"
+          tabindex="-1"
+          aria-labelledby="modalEliminarLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalEliminarLabel">
+                  Eliminar mascota
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                ¿Estas seguro que quieres eliminar a
+                <span class="resaltar">{{aEliminar.nombre}}</span> ?
+                <div>
+                  <img
+                    :src="aEliminar.foto"
+                    :alt="'imagen:'+aEliminar.nombre"
+                    height="50"
+                  />
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  id="modal-eliminar"
+                  v-on:click="eliminar(aEliminar.id)"
+                >
+                  Confirmar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--fin modal-->
+      </div>
+    </main>
+    <script src="https://use.fontawesome.com/45c6e0d32f.js"></script>
+    <script src="js/alerta.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/main_mascota.js"></script>
+  </body>
+</html>
