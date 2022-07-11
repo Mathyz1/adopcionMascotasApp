@@ -20,7 +20,7 @@ uri = os.getenv("DATABASE_URL")  # or other relevant config var
 if uri.startswith("postgres://"):
     uri = uri.replace("postgres://", "postgresql://", 1)
 # rest of connection code using the connection string `uri`
-# 'postgres://wrilizvyifocoo:81c42b13a206839b3e7f726abd32997d9fbc9b27d720f8260e038a9841a6a876@ec2-3-223-169-166.compute-1.amazonaws.com:5432/dd00723lmf15bj'
+# postgres://mtroefqyynqoay:2b6d4b4b607217d0e5bc7ed0c7c29ce3f171535bf45c781c4f2b6fb3b4e1033d@ec2-52-22-136-117.compute-1.amazonaws.com:5432/dsamt0rlsf6uv
 app.config['SQLALCHEMY_DATABASE_URI'] = uri
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
