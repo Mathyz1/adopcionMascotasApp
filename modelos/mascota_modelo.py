@@ -3,11 +3,11 @@ from app import db, ma
 
 class Mascota(db.Model):  # defino la tabla
     id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(100))
-    descripcion = db.Column(db.String(100))
-    sexo = db.Column(db.String(100))
+    nombre = db.Column(db.String(100),nullable=False)
+    descripcion = db.Column(db.String(100),nullable=False)
+    sexo = db.Column(db.String(100),nullable=False)
     edad = db.Column(db.Integer)
-    animal = db.Column(db.Integer)
+    animal = db.Column(db.Integer,nullable=False)
     foto = db.Column(db.String(100))
     peso = db.Column(db.Integer)
     desparasitado = db.Column(db.Boolean)
