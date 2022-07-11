@@ -5,8 +5,6 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 
-from datetime import datetime #Nos permitirá darle el nombre a la foto
-
 app = Flask(__name__)
 CORS(app)
 
