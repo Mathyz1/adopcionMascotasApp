@@ -82,7 +82,6 @@ foto.addEventListener("change",(e) => {
 
 function guardarMascota() {
 
-    
     let n = document.getElementById("txtNombre").value
     let d = document.getElementById("txtDescripcion").value
     let s = document.querySelector('input[name="txtSexo"]:checked').value;
@@ -127,7 +126,8 @@ function guardarMascota() {
             localStorage.setItem("operacionExitosa","true")
             localStorage.setItem("mensaje","Mascota agregada con exito")
             localStorage.setItem("mostrarAlerta","true")
-            window.location.pathname = "/web/mascotas.html";
+            console.log(window.location)
+            window.location.pathname = "./web/mascotas.html";
             // Handle response we get from the API
         })
         .catch(err => {
@@ -136,7 +136,7 @@ function guardarMascota() {
             localStorage.setItem("operacionExitosa","false")
             localStorage.setItem("mensaje","error al agregar mascota")
             localStorage.setItem("mostrarAlerta","true")
-            window.location.pathname = "/web/mascotas.html";
+            window.location.pathname = "./web/mascotas.html";
             //console.error(err);
         })
 };
