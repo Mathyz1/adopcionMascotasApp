@@ -160,6 +160,37 @@ h2{
     color: red;
 }
 
+.container-form{
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.formulario{
+    width:  680px;
+    
+}
+
+.form-checkbox{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.fila-doble{
+    display: flex;
+    justify-content: space-between;
+}
+.radio{
+    justify-content: space-evenly;
+}
+
+.item-fila-doble{
+    width: 48%;
+}
+.item-fila-doble button, .item-fila-doble a{
+    width: 100%;
+}
+
 @media screen  and (max-width:768px) {
     .banner-titulo{
         padding-top: 10px;
@@ -167,3 +198,4 @@ h2{
     }
     
 }
+

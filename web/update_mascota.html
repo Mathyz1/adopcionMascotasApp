@@ -18,198 +18,226 @@
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <link rel="stylesheet" href="css/main.css" />
+    <link rel="shortcut icon" href="./img/perro.webp" type="image/x-icon" />
   </head>
   <body>
     <header id="idheader"></header>
     <div id="msj-alerta"></div>
-    <main style="margin: 1% 20%">
+    <main>
       <div class="container">
         <h1>Modificar Mascota</h1>
-        <form id="app" class="formulario">
-          <div class="mb-3">
-            <label for="txtId">Id</label>
-            <input
-              type="text"
-              class="form-control"
-              name="txtId"
-              id="txtId"
-              :value="mascotas.id"
-              disabled
-            /><br />
-          </div>
-          <div class="mb-3">
-            <label for="txtNombre">Nombre</label>
-            <input
-              type="text"
-              class="form-control"
-              name="txtNombre"
-              id="txtNombre"
-              :value="mascotas.nombre"
-            /><br />
-          </div>
-          <div class="mb-3">
-            <label for="txtDescripcion">Descripcion</label>
-            <input
-              type="text"
-              class="form-control"
-              name="txtDescripcion"
-              id="txtDescripcion"
-              :value="mascotas.descripcion"
-            />
-          </div>
-
-          <p>Sexo</p>
-          <div class="mb-3">
-            <input
-              type="radio"
-              name="txtSexo"
-              id="txtSexo1"
-              value="hembra"
-              :checked="mascotas.sexo == 'hembra'"
-            />
-            <label for="txtSexo1">Hembra</label>
-            <br />
-            <input
-              type="radio"
-              name="txtSexo"
-              id="txtSexo2"
-              value="macho"
-              :checked="mascotas.sexo == 'macho'"
-            />
-            <label for="txtSexo2">Macho</label>
-            <br />
-          </div>
-          <div class="mb-3">
-            <label for="txtEdad">Edad</label>
-            <input
-              type="number"
-              class="form-control"
-              name="txtEdad"
-              id="txtEdad"
-              :value="mascotas.edad"
-            />
-            <br />
-          </div>
-          <div class="mb-3">
-            <label for="txtFoto">Foto</label>
-            <input
-              type="url"
-              class="form-control"
-              name="txtFoto"
-              id="txtFoto"
-              :value="mascotas.foto"
-            />
-            <br />
-          </div>
-          <div class="mb-3" id="appAnimal">
-            <label for="txtAnimal">Animal:</label>
-            <select name="select" id="txtAnimal">
-              <option
-                v-for="dato in animales"
-                :value="dato.id"
-                :selected="dato.id==mascotas.animal"
-              >
-                {{dato.descripcion}}
-              </option>
-            </select>
-          </div>
-          <div id="app">
+        <div class="container-form">
+          <form id="app" class="formulario">
             <div class="mb-3">
+              <label for="txtId">Id</label>
               <input
-                type="checkbox"
-                name="txtDesparasitado"
-                id="txtDesparasitado"
-                value="desparasitado"
-                :checked="mascotas.desparasitado"
+                type="text"
+                class="form-control"
+                name="txtId"
+                id="txtId"
+                :value="mascotas.id"
+                disabled
               />
-              <label for="txtDesparasitado">Desparasitado</label>
-              <br />
+            </div>
+            <div class="fila-doble">
+              <div class="mb-3 item-fila-doble">
+                <label for="txtNombre">Nombre</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="txtNombre"
+                  id="txtNombre"
+                  :value="mascotas.nombre"
+                />
+              </div>
+              <div class="mb-3 item-fila-doble" id="appAnimal">
+                <label for="txtAnimal">Animal:</label>
+                <select name="select" id="txtAnimal" class="form-select">
+                  <option
+                    v-for="dato in animales"
+                    :value="dato.id"
+                    :selected="dato.id==mascotas.animal"
+                  >
+                    {{dato.descripcion}}
+                  </option>
+                </select>
+              </div>
             </div>
 
             <div class="mb-3">
+              <label for="txtDescripcion">Descripcion</label>
               <input
-                type="checkbox"
-                name="txtVacunado"
-                id="txtVacunado"
-                value="vacunado"
-                :checked="mascotas.vacunado"
+                type="text"
+                class="form-control"
+                name="txtDescripcion"
+                id="txtDescripcion"
+                :value="mascotas.descripcion"
               />
-              <label for="txtVacunado">Vacunado</label>
-              <br />
+            </div>
+
+            <div class="fila-doble radio">
+              <div>
+                <p>Sexo</p>
+                <div class="mb-3">
+                  <input
+                    type="radio"
+                    name="txtSexo"
+                    id="txtSexo1"
+                    value="hembra"
+                    :checked="mascotas.sexo == 'hembra'"
+                  />
+                  <label for="txtSexo1">Hembra</label>
+                  <br />
+                  <input
+                    type="radio"
+                    name="txtSexo"
+                    id="txtSexo2"
+                    value="macho"
+                    :checked="mascotas.sexo == 'macho'"
+                  />
+                  <label for="txtSexo2">Macho</label>
+                  <br />
+                </div>
+              </div>
+              <div>
+                <p>Tamaño:</p>
+                <div class="mb-3">
+                  <input
+                    type="radio"
+                    name="txtTamanio"
+                    id="txtTamanio1"
+                    value="chico"
+                    :checked="mascotas.tamanio == 'chico'"
+                  />
+                  <label for="txtTamanio1">Chico</label>
+                  <br />
+                  <input
+                    type="radio"
+                    name="txtTamanio"
+                    id="txtTamanio2"
+                    value="mediano"
+                    :checked="mascotas.tamanio == 'mediano'"
+                  />
+                  <label for="txtTamanio2">Mediano</label>
+                  <br />
+                  <input
+                    type="radio"
+                    name="txtTamanio"
+                    id="txtTamanio3"
+                    value="grande"
+                    :checked="mascotas.tamanio == 'grande'"
+                  />
+                  <label for="txtTamanio3">Grande</label>
+                  <br />
+                </div>
+              </div>
+            </div>
+
+            <div class="fila-doble">
+              <div class="mb-3 item-fila-doble">
+                <label for="txtEdad">Edad</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  name="txtEdad"
+                  id="txtEdad"
+                  :value="mascotas.edad"
+                />
+                <br />
+              </div>
+
+              <div class="mb-3 item-fila-doble">
+                <label for="txtPeso">Peso</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  name="txtPeso"
+                  id="txtPeso"
+                  :value="mascotas.peso"
+                />
+                <br />
+              </div>
+            </div>
+
+            <p>Intervenciones realizadas a la mascotas:</p>
+            <div id="app" class="form-checkbox">
+              <div class="mb-3">
+                <input
+                  type="checkbox"
+                  name="txtDesparasitado"
+                  id="txtDesparasitado"
+                  value="desparasitado"
+                  :checked="mascotas.desparasitado"
+                />
+                <label for="txtDesparasitado">Desparasitado</label>
+                <br />
+              </div>
+
+              <div class="mb-3">
+                <input
+                  type="checkbox"
+                  name="txtVacunado"
+                  id="txtVacunado"
+                  value="vacunado"
+                  :checked="mascotas.vacunado"
+                />
+                <label for="txtVacunado">Vacunado</label>
+                <br />
+              </div>
+
+              <div class="mb-3">
+                <input
+                  type="checkbox"
+                  name="txtEsterilizado"
+                  id="txtEsterilizado"
+                  value="esterilizado"
+                  :checked="mascotas.esterilizado"
+                />
+                <label for="txtEsterilizado">Esterilizado</label>
+                <br />
+              </div>
+
+              <input
+                type="text"
+                id="checkedValores"
+                name="checkedValores"
+                :value="checkedValores"
+                hidden
+              />
             </div>
 
             <div class="mb-3">
+              <label for="txtFoto">Foto</label>
               <input
-                type="checkbox"
-                name="txtEsterilizado"
-                id="txtEsterilizado"
-                value="esterilizado"
-                :checked="mascotas.esterilizado"
+                type="url"
+                class="form-control"
+                name="txtFoto"
+                id="txtFoto"
+                :value="mascotas.foto"
               />
-              <label for="txtEsterilizado">Esterilizado</label>
               <br />
             </div>
 
-            <input
-              type="text"
-              id="checkedValores"
-              name="checkedValores"
-              :value="checkedValores"
-              hidden
-            />
-          </div>
-          <div class="mb-3">
-            <label for="txtPeso">peso</label>
-            <input
-              type="number"
-              class="form-control"
-              name="txtPeso"
-              id="txtPeso"
-              :value="mascotas.peso"
-            />
-            <br />
-          </div>
-          <p>Tamaño:</p>
-          <div class="mb-3">
-            <input
-              type="radio"
-              name="txtTamanio"
-              id="txtTamanio1"
-              value="chico"
-              :checked="mascotas.tamanio == 'chico'"
-            />
-            <label for="txtTamanio1">Chico</label>
-            <br />
-            <input
-              type="radio"
-              name="txtTamanio"
-              id="txtTamanio2"
-              value="mediano"
-              :checked="mascotas.tamanio == 'mediano'"
-            />
-            <label for="txtTamanio2">Mediano</label>
-            <br />
-            <input
-              type="radio"
-              name="txtTamanio"
-              id="txtTamanio3"
-              value="grande"
-              :checked="mascotas.tamanio == 'grande'"
-            />
-            <label for="txtTamanio3">Grande</label>
-            <br />
-          </div>
+            <div class="fila-doble">
+              <div class="item-fila-doble">
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  onclick="modificarMascota()"
+                >
+                  Modificar
+                </button>
+              </div>
+              <div class="item-fila-doble">
+                <a href="mascotas.html" class="btn btn-warning"
+                  >Ir a mascotas</a
+                >
+              </div>
+            </div>
+          </form>
+        </div>
 
-          <button
-            type="button"
-            class="btn btn-success"
-            onclick="modificarMascota()"
-          >
-            Grabar
-          </button>
-        </form>
         <br />
-        <a href="index.html" class="btn btn-warning">Home</a>
       </div>
     </main>
     <script src="js/index.js"></script>

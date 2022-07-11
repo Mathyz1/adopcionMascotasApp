@@ -18,167 +18,208 @@
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <link rel="stylesheet" href="css/main.css" />
+    <link rel="shortcut icon" href="./img/perro.webp" type="image/x-icon" />
   </head>
   <body>
     <header id="idheader"></header>
     <div id="msj-alerta"></div>
-    <main style="margin: 1% 20%">
+    <main>
       <div class="container">
         <h1>Alta Mascota</h1>
         <!--onsubmit="guardarMascota()"-->
-        <form class="formulario">
-          <div class="mb-3">
-            <label for="txtNombre">Nombre</label>
-            <input
-              type="text"
-              class="form-control"
-              name="txtNombre"
-              id="txtNombre"
-            /><br />
-          </div>
-          <div class="mb-3">
-            <label for="txtDescripcion">Descripcion</label>
-            <input
-              type="text"
-              class="form-control"
-              name="txtDescripcion"
-              id="txtDescripcion"
-            />
-            <br />
-          </div>
-          <!-- Este tiene que ser un checkbox-->
-          <p>Sexo:</p>
-          <div class="mb-3">
-            <input type="radio" name="txtSexo" id="txtSexo1" value="hembra" />
-            <label for="txtSexo1">Hembra</label>
-            <br />
-            <input type="radio" name="txtSexo" id="txtSexo2" value="macho" />
-            <label for="txtSexo2">Macho</label>
-            <br />
-          </div>
-          <div class="mb-3">
-            <label for="txtEdad">Edad</label>
-            <input
-              type="number"
-              class="form-control"
-              name="txtEdad"
-              id="txtEdad"
-            />
-            <br />
-          </div>
-          <div class="mb-3">
-            <label for="txtFoto">Foto</label>
-            <input
-              type="text"
-              class="form-control"
-              name="txtFoto"
-              id="txtFoto"
-            />
-            <br />
-          </div>
-
-          <div class="mb-3" id="appAnimal">
-            <label for="txtAnimal">Animal:</label>
-            <select name="select" id="txtAnimal">
-              <option v-for="dato in datos" :value="dato.id">
-                {{dato.descripcion}}
-              </option>
-            </select>
-          </div>
-          <div id="app">
-            <div class="mb-3">
-              <input
-                type="checkbox"
-                name="txtDesparasitado"
-                id="txtDesparasitado"
-                value="desparasitado"
-                v-model="checkedValores"
-              />
-              <label for="txtDesparasitado">Desparasitado</label>
-              <br />
+        <div class="container-form">
+          <form class="formulario">
+            <div class="fila-doble">
+              <div class="mb-3 item-fila-doble">
+                <label for="txtNombre">Nombre</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="txtNombre"
+                  id="txtNombre"
+                  required
+                />
+              </div>
+              <div class="mb-3 item-fila-doble" id="appAnimal">
+                <label for="txtAnimal">Animal:</label>
+                <select name="select" id="txtAnimal" class="form-select">
+                  <option v-for="dato in datos" :value="dato.id">
+                    {{dato.descripcion}}
+                  </option>
+                </select>
+              </div>
             </div>
 
             <div class="mb-3">
+              <label for="txtDescripcion">Descripcion</label>
               <input
-                type="checkbox"
-                name="txtVacunado"
-                id="txtVacunado"
-                value="vacunado"
-                v-model="checkedValores"
+                type="text"
+                class="form-control"
+                name="txtDescripcion"
+                id="txtDescripcion"
               />
-              <label for="txtVacunado">Vacunado</label>
-              <br />
+            </div>
+
+            <!-- Este tiene que ser un checkbox-->
+            <div class="fila-doble radio">
+              <div>
+                <p>Sexo:</p>
+                <div class="mb-3">
+                  <input
+                    type="radio"
+                    name="txtSexo"
+                    id="txtSexo1"
+                    value="hembra"
+                    checked
+                  />
+                  <label for="txtSexo1">Hembra</label>
+                  <br />
+                  <input
+                    type="radio"
+                    name="txtSexo"
+                    id="txtSexo2"
+                    value="macho"
+                  />
+                  <label for="txtSexo2">Macho</label>
+                  <br />
+                </div>
+              </div>
+
+              <div>
+                <p>Tamaño:</p>
+                <div class="mb-3">
+                  <input
+                    type="radio"
+                    name="txtTamanio"
+                    id="txtTamanio1"
+                    value="chico"
+                  />
+                  <label for="txtTamanio1">Chico</label>
+                  <br />
+                  <input
+                    type="radio"
+                    name="txtTamanio"
+                    id="txtTamanio2"
+                    value="mediano"
+                  />
+                  <label for="txtTamanio2">Mediano</label>
+                  <br />
+                  <input
+                    type="radio"
+                    name="txtTamanio"
+                    id="txtTamanio3"
+                    value="grande"
+                  />
+                  <label for="txtTamanio3">Grande</label>
+                  <br />
+                </div>
+              </div>
+            </div>
+
+            <div class="fila-doble">
+              <div class="mb-3 item-fila-doble">
+                <label for="txtEdad">Edad</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  name="txtEdad"
+                  id="txtEdad"
+                  placeholder="valor en años"
+                  required
+                />
+              </div>
+
+              <div class="mb-3 item-fila-doble">
+                <label for="txtPeso">Peso</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  name="txtPeso"
+                  id="txtPeso"
+                  max="200"
+                  placeholder="valor en Kilogramos enteros"
+                />
+              </div>
+            </div>
+            <p>
+              Seleccion si la mascota recibio alguna de estas intervenciones:
+            </p>
+
+            <div id="app" class="form-checkbox">
+              <div class="mb-3">
+                <input
+                  type="checkbox"
+                  name="txtDesparasitado"
+                  id="txtDesparasitado"
+                  value="desparasitado"
+                  v-model="checkedValores"
+                />
+                <label for="txtDesparasitado">Desparasitado</label>
+              </div>
+
+              <div class="mb-3">
+                <input
+                  type="checkbox"
+                  name="txtVacunado"
+                  id="txtVacunado"
+                  value="vacunado"
+                  v-model="checkedValores"
+                />
+                <label for="txtVacunado">Vacunado</label>
+              </div>
+
+              <div class="mb-3">
+                <input
+                  type="checkbox"
+                  name="txtEsterilizado"
+                  id="txtEsterilizado"
+                  value="esterilizado"
+                  v-model="checkedValores"
+                />
+                <label for="txtEsterilizado">Esterilizado</label>
+              </div>
+
+              <input
+                type="text"
+                id="checkedValores"
+                name="checkedValores"
+                :value="checkedValores"
+                hidden
+              />
             </div>
 
             <div class="mb-3">
+              <label for="txtFoto">Foto</label>
               <input
-                type="checkbox"
-                name="txtEsterilizado"
-                id="txtEsterilizado"
-                value="esterilizado"
-                v-model="checkedValores"
+                type="text"
+                class="form-control"
+                name="txtFoto"
+                id="txtFoto"
+                placeholder="./img/mascotas/mascota1.webp"
               />
-              <label for="txtEsterilizado">Esterilizado</label>
               <br />
             </div>
 
-            <input
-              type="text"
-              id="checkedValores"
-              name="checkedValores"
-              :value="checkedValores"
-              hidden
-            />
-          </div>
+            <div class="fila-doble">
+              <div class="item-fila-doble">
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  onclick="guardarMascota()"
+                >
+                  Crear
+                </button>
+              </div>
+              <div class="item-fila-doble">
+                <a href="mascotas.html" class="btn btn-warning"
+                  >Ir a mascotas</a
+                >
+              </div>
+            </div>
+          </form>
+        </div>
 
-          <div class="mb-3">
-            <label for="txtPeso">peso</label>
-            <input
-              type="number"
-              class="form-control"
-              name="txtPeso"
-              id="txtPeso"
-            />
-            <br />
-          </div>
-          <p>Tamaño:</p>
-          <div class="mb-3">
-            <input
-              type="radio"
-              name="txtTamanio"
-              id="txtTamanio1"
-              value="chico"
-            />
-            <label for="txtTamanio1">Chico</label>
-            <br />
-            <input
-              type="radio"
-              name="txtTamanio"
-              id="txtTamanio2"
-              value="mediano"
-            />
-            <label for="txtTamanio2">Mediano</label>
-            <br />
-            <input
-              type="radio"
-              name="txtTamanio"
-              id="txtTamanio3"
-              value="grande"
-            />
-            <label for="txtTamanio3">Grande</label>
-            <br />
-          </div>
-
-          <button
-            type="button"
-            class="btn btn-success"
-            onclick="guardarMascota()"
-          >
-            Grabar
-          </button>
-        </form>
         <br />
-        <a href="index.html" class="btn btn-warning">Home</a>
       </div>
       <div id="imagen"></div>
     </main>
